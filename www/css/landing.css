@@ -1,0 +1,40 @@
+.c-pull-up-wrap{
+    margin-top: 60vh;
+    background: white;
+    border-radius: 50px;
+    height:100vh;
+}
+.c-landing{
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:calc(60vh + 50px);
+    background: skyblue;
+    z-index:-1;
+}
+.c-la-mount{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    width:100vw;
+    background:url('/med/rock.png');
+    background-position: top;
+    background-size:cover;
+    height:20vh;
+}
+.c-landing-animation-wrap{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+}
+.c-landing-animation-wrap:after{
+    background:white;
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+}

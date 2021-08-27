@@ -1,0 +1,253 @@
+<div class="c-landing">
+    <div class="c-landing-animation-wrap">
+        <div class="c-la-mount">
+
+        </div>
+    </div>
+</div>
+<div class="c-pull-up-wrap">
+    <div class="c-pull-up">
+        <div class="span-title gbold heading" >
+            CLOCK
+        </div>
+    </div>
+</div>
+<!--<div class="landing-main">
+    <div class="span-title gbold heading" >
+        CLOCK
+    </div>
+    <br>
+    <div style="text-align: center;">
+        
+        <div class="meter-health">
+            <canvas id="health-gauge" class="healium-gauge">
+
+            </canvas>
+            <div style="padding-top:150px;">
+                <div class="meter-percentage gbold heading clock_IN" mid="health">
+                    
+                </div>
+                <div class="meter-data">
+                    India
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="head-butt-container">
+        <div class="head-butt" >
+            <div>
+                <span mid="water" class="clock_US">
+                    
+                </span>
+                <br>
+                <small>
+                    New York
+                </small>
+            </div>
+        </div>
+        <div class="head-butt" >
+            <div>
+                <span mid="" class="clock_UK">
+                    
+                </span>
+                <br>
+                <small>
+                    London
+                </small>
+            </div>
+        </div>
+        <div class="head-butt" style="font-size: 24px;">
+            <div>
+                <span class="clock_JA">
+                    
+                </span>
+                <br>
+                <small>
+                    Tokyo
+                </small>
+            </div>
+        </div>
+        <div class="head-butt">
+            <div>
+                <span mid="exercise" class="clock_AU">
+                    
+                </span>
+                <br>
+                <small>
+                    Sydney
+                </small>
+            </div>
+        </div>
+        <br>
+        <br>
+         <div class="button-input water" onclick="aboutOpen()">
+            About
+        </div>
+        <br>
+        <br>
+        <div class="button-input water" onclick="bmiOpen()">
+            Bed Time
+        </div>
+    </div>
+</div>
+-->
+<!-- <div class="healium-about-cover" onclick="aboutOpen()">
+    
+</div>
+<div class="healium-about">
+    <div style="padding: 30px;white-space: normal;">
+        <div class="gbold" style="text-align: center; font-size: 25px;">
+            About Clock
+        </div>
+        <br>
+        <br>
+        Clock helps you keep track of your daily routine by providing you time from 4 different cities around the world!
+        <br>
+        <br>
+        <b>
+            Made by Khush Golani - CF
+        </b>
+    </div>
+    
+</div> -->
+<div class="healium-bmi-cover" onclick="bmiOpen()">
+    
+</div>
+<script>
+    let date = new Date();
+    let hours = date.getHours(),minutes= date.getMinutes(), seconds = date.getSeconds();
+    let date_US = new Date(new Date()-34200000);
+    let date_UK = new Date(new Date()-16200000);
+    let date_JA = new Date((new Date()-0)+11400000);
+    let date_AU = new Date((new Date()-0)+9000000);
+    let hours_US = date_US.getHours(), minutes_US = date_US.getMinutes();
+    let hours_UK = date_UK.getHours(), minutes_UK = date_UK.getMinutes();
+    let hours_JA = date_JA.getHours(), minutes_JA = date_JA.getMinutes();
+    let hours_AU = date_AU.getHours(), minutes_AU = date_AU.getMinutes();
+    let am_pm = "am", am_pm_US = "am", am_pm_UK = "am", am_pm_JA = "am", am_pm_AU = "am"
+    window.setInterval(()=>{
+        date = new Date();
+        date_US = new Date(new Date()-34200000);
+        date_UK = new Date(new Date()-16200000);
+        date_JA = new Date((new Date()-0)+11400000);
+        date_AU = new Date((new Date()-0)+9000000);
+        if(date.getHours() > 12)
+            am_pm = "pm"
+        else
+            am_pm = "am"
+
+        hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+        minutes= date.getMinutes().toString();
+        seconds = date.getSeconds().toString();
+        //_________________________________________
+        if(date_US.getHours() > 12)
+            am_pm_US = "pm"
+        else
+            am_pm_US = "am"
+
+        hours_US = date_US.getHours() > 12 ? date_US.getHours() - 12 : date_US.getHours();
+        minutes_US = date_US.getMinutes();
+        //_________________________________________
+        if(date_UK.getHours() > 12)
+            am_pm_UK = "pm"
+        else
+            am_pm_UK = "am"
+
+        hours_UK = date_UK.getHours() > 12 ? date_UK.getHours() - 12 : date_UK.getHours();
+        minutes_UK = date_UK.getMinutes();
+        //_________________________________________
+        if(date_JA.getHours() > 12)
+            am_pm_JA = "pm"
+        else
+            am_pm_JA = "am"
+
+        hours_JA = date_JA.getHours() > 12 ? date_JA.getHours() - 12 : date_JA.getHours();
+        minutes_JA = date_JA.getMinutes();
+        //_________________________________________
+        if(date_AU.getHours() > 12)
+            am_pm_AU = "pm"
+        else
+            am_pm_AU = "am"
+
+        hours_AU = date_AU.getHours() ;
+        minutes_AU = date_AU.getMinutes();
+
+        document.querySelector(".clock_IN").innerHTML = (hours.toString().length == 1? (0+hours.toString()):hours) + ":" + (minutes.toString().length == 1? (0+minutes.toString()):minutes) + ":" + (seconds.toString().length == 1? (0+seconds.toString()):seconds) + " " + am_pm;
+        document.querySelector(".clock_US").innerHTML = (hours_US.toString().length == 1? (0+hours_US.toString()):hours_US) + ":" + ((minutes_US).toString().length == 1? (0+minutes_US.toString()):minutes_US) + " " + am_pm_US;
+        document.querySelector(".clock_UK").innerHTML = (hours_UK.toString().length == 1? (0+hours_UK.toString()):hours_UK) + ":" + ((minutes_UK).toString().length == 1? (0+minutes_UK.toString()):minutes_UK) + " " + am_pm_UK;
+        document.querySelector(".clock_JA").innerHTML = (hours_JA.toString().length == 1? (0+hours_JA.toString()):hours_JA) + ":" + ((minutes_JA).toString().length == 1? (0+minutes_JA.toString()):minutes_JA) + " " + am_pm_JA;
+        document.querySelector(".clock_AU").innerHTML = (hours_AU.toString().length == 1? (0+hours_AU.toString()):hours_AU) + ":" + ((minutes_AU).toString().length == 1? (0+minutes_AU.toString()):minutes_AU) + " " + am_pm_AU;
+    }, 1000);
+</script>
+<!-- 
+<Script>
+    function aboutOpen(){
+        $('.healium-about-cover').fadeToggle(200);
+        $('.healium-about').toggleClass('show');
+    }
+    function bmiOpen(){
+        $('.healium-bmi-cover').fadeToggle(200);
+        $('.bmi-calc').toggleClass('show');
+    }
+var target = document.getElementById('health-gauge'); // your canvas element
+var gauge = new Gauge(target).setOptions(gaugeOpts); // create sexy gauge!
+gauge.maxValue = 3000; // set max gauge value
+calcHealth();
+
+function calcHealth(){
+    var water = localStorage['waterCompleted'];
+    var calorie = localStorage['calorieCompleted'];
+    var exer = localStorage['exerCompleted'];
+    var waterRatio = water / localStorage['waterTotal'];
+    var calorieRatio = calorie / localStorage['calorieTotal'];
+    var exerRatio = exer / localStorage['exerTotal'] ;
+    if(waterRatio > 1){
+        var waterRatio = 1;
+    }
+    if(calorieRatio > 1){
+        var calorieRatio = 1;
+    }
+    if(exerRatio > 1){
+        var exerRatio = 1;
+    }
+    var totalHealth = waterRatio + calorieRatio + exerRatio; 
+    var percentage = totalHealth / 3 * 100;
+    $('[mid="health"]').html(Math.floor(percentage)+'%');
+    gauge.set(totalHealth*1000);
+}
+var percentage = parseInt(localStorage['waterCompleted']) / parseInt(localStorage['waterTotal']) * 100;
+$('[mid="water"]').html(Math.floor(percentage)+'%');
+var percentage = parseInt(localStorage['calorieCompleted']) / parseInt(localStorage['calorieTotal']) * 100;
+$('[mid="calorie"]').html(Math.floor(percentage)+'%');
+var percentage = parseInt(localStorage['exerCompleted']) / parseInt(localStorage['exerTotal']) * 100;
+$('[mid="exercise"]').html(Math.floor(percentage)+'%');
+
+function calcBMI(){
+    var weight = parseFloat($('#weight').val());
+    var height = parseFloat($('#height').val());
+    bmi = Math.round(weight / (height * height));
+    $('#bmiform').fadeOut(200);
+    $('.bmi-calc .gbold').html('Your BMI');
+    $('.bmitotal').html(bmi);
+    $('.bmitotal').fadeIn(200);
+    if(parseInt(bmi) > 27 ){
+        var classi = 'Overweight';
+        var tips = "Fried food is heaven. But it’s not your time yet. AVOID IT.<br>An apple a day keeps the doctor away! Have some.<br>Those photos of Greek salads are beautiful! Why not have some for yourself?<br>Let’s get some proteins in you!<br>You need pulses, beans, paneer, egg and meat!<br>Avoid sugar and sweets! You’re already too sweet.";
+    }else if(parseInt(bmi) < 18 ){
+        var classi = 'Underweight';
+        var tips = 'You need some proteins!<br>Let&apos;s get some pulses, beans, paneer, egg and meat in you.<br>Looks like veggies are missing too!<br>Have ample vegetables after proteins.<br>Let&apos;s fatten you up!<br>Have some ghee, butter or cream.<br> Milk needed.<br>Stay Hydrated. <br>You need to hit the hay more!';
+    }else{
+        var classi = 'Normal';
+        var tips = 'All is good!';
+    }
+    $('.bmi-info-main').html('<b>You are '+classi+'!</b><br>'+tips+'<br><br><button class="calc-bmib" onclick="closeBMI()"> Continue </button>' );
+}
+function closeBMI(){
+    $('#bmiform').fadeIn(200);
+    $('.bmi-calc .gbold').html('Calculate BMI');
+    $('.bmitotal').fadeOut(200);
+    $('.bmi-info-main').html('');
+}
+</Script> -->

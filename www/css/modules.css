@@ -1,0 +1,147 @@
+.landing-main{
+    height: 90vh;
+    color: white;
+    text-align: center;
+}
+.landing-main.nothealthy{
+    background: linear-gradient(to top right, rgb(255, 54, 54), rgb(151, 0, 0));
+}
+.main-page{
+    border-radius: 50px 50px 0px 0px;
+    background:white;
+    margin-top: 75vh;
+    min-height: 30vh;
+}
+.span-title{
+    padding: 40px;
+    text-align: center;
+}
+.head-butt-container{
+    text-align: center;
+    white-space: initial;
+}
+.head-butt{
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.281);
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    margin: 5px;
+    border-radius: 20px;
+    padding: 20px;
+    transition: 0.4s;
+}
+.head-butt:active{
+    background: rgba(255, 255, 255, 0.473);
+}
+.head-butt small{
+    font-size: 13px;
+}
+.meter-health{
+    width: 270px;
+    height: 250px;
+    position: relative;
+    /*border-radius: 50%;
+    border: 20px solid rgba(255, 255, 255, 0.459);
+    border-bottom: 20px solid transparent;*/
+    display: inline-flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.meter-percentage{
+    font-size: 40px;
+    font-weight: 800;
+}
+.meter-data{
+    font-weight: 100;
+    font-size: 19px;
+}
+.button-input{
+    color: white;
+    background: rgba(255, 255, 255, 0.281);
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 10px;
+    transition: 0.4s;
+}
+.button-input:active{
+    background: rgba(255, 255, 255, 0.473);
+}
+.water-input{
+    padding:15px 30px;
+    padding-right: 50px;
+    background: rgba(0, 0, 0, 0.212);
+    color: white;
+    border:0px;
+    border-radius: 10px;
+    outline: 0px;
+    font-size: inherit;
+    width: 55px;
+}
+.water-input-label{
+    display: inline-block;
+    position: relative;
+}
+.water-label{
+    position: absolute;
+    right: 30px;
+    top: 14.5px;
+}
+.healium-gauge{
+    height: 250px;
+    width: 270px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+.healium-about,.bmi-calc{
+    background: white;
+    position: fixed;
+    bottom: -55vh;
+    left: 0px;
+    right: 0px;
+    height: 50vh;
+    border-radius: 50px 50px 0px 0px;
+    z-index: 100;
+    overflow-x: auto;
+    transition: 0.2s;
+}
+.healium-about.show, .bmi-calc.show{
+    bottom: 0px;
+}
+.healium-about-cover, .healium-bmi-cover{
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.411);
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: none;
+}
+.pppppp{
+    padding: 15px;
+    border: 0px;
+    background: rgb(238, 238, 238);
+    border-radius: 10px;
+    outline: 0px;
+    width: calc(100% - 30px);
+    margin-bottom: 10px;
+
+}
+.calc-bmib{
+    color: white;
+    background: dodgerblue;
+    padding: 15px;
+    border: 0px;
+    border-radius: 10px;
+    outline: 0px;
+    width: 100%;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,116 @@
+<div class="landing-main">
+    <div class="span-title gbold heading" >
+        Water
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <div class="meter-health">
+            <div class="stopwatch">00:00:00</div>
+            <div class="Laps"></div>
+            <button class="StartStopwatch">Start</button>
+            <button class="StopStopwatch">Stop</button>
+            <button class="LapStopwatch">Lap</button>
+            <button class="ResetStopwatch">Reset</button>
+            <div style="padding-top:150px;">
+                <div class="meter-percentage gbold heading stopwatch" mid= "water">
+                    
+                </div>
+                <div class="meter-data">
+                    
+                    <br>
+                    <small onclick="resetWater()">
+                        reset
+                    </small>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!--<label class="water-input-label">
+        <input type="number" class="water-input">
+        <div class="water-label">
+            ml
+        </div>
+    </label>-->
+    
+    <div class="button-input water" onclick="waterDrink()">
+        I drank a glass of water!
+    </div>
+</div>
+<script>
+    let stopwatch_hours=0;
+    let stopwatch_minutes=0;
+    let stopwatch_seconds=0;
+    let stopwatch = document.querySelector(".stopwatch");
+    let lapContainer = document.querySelector(".Laps");
+    let start_stopwatch = document.querySelector(".StartStopwatch");
+    let reset_stopwatch = document.querySelector(".ResetStopwatch");
+    let lap_stopwatch = document.querySelector(".LapStopwatch");
+    let stop_stopwatch = document.querySelector(".StopStopwatch");
+    let StopWatchLoop;
+
+    start_stopwatch.addEventListener("click", () => {
+        document.querySelector(".water").innerText = "huu"
+        StopWatchLoop = window.setInterval(() => {
+            stopwatch_seconds++;
+
+            if( Number(stopwatch_seconds) == 59 ) {
+                stopwatch_minutes = stopwatch_minutes + 1;
+                stopwatch_seconds = 00;
+            }
+
+            if( Number(stopwatch_minutes) == 59 ) {
+                stopwatch_hours = stopwatch_hours + 1;
+                stopwatch_minutes = 00;
+            }
+            stopwatch.innerHTML = (stopwatch_hours.toString().length == 1? (0+stopwatch_hours.toString()):stopwatch_hours) + ":" + (stopwatch_minutes.toString().length == 1? (0+stopwatch_minutes.toString()):stopwatch_minutes) + ":" + (stopwatch_seconds.toString().length == 1? (0+stopwatch_seconds.toString()):stopwatch_seconds);
+        }, 1000);
+    });
+    stop_stopwatch.addEventListener("click",() => {
+        window.clearInterval(StopWatchLoop);
+    });
+
+    lap_stopwatch.addEventListener("click",() => {
+        lapContainer.innerHTML += (stopwatch_hours.toString().length == 1? (0+stopwatch_hours.toString()):stopwatch_hours) + ":" + (stopwatch_minutes.toString().length == 1? (0+stopwatch_minutes.toString()):stopwatch_minutes) + ":" + (stopwatch_seconds.toString().length == 1? (0+stopwatch_seconds.toString()):stopwatch_seconds);
+    });
+    reset_stopwatch.addEventListener("click",() => {
+        stopwatch_hours=0;
+        stopwatch_minutes=0;
+        stopwatch_seconds=0;
+        stopwatch.innerHTML = (stopwatch_hours.toString().length == 1? (0+stopwatch_hours.toString()):stopwatch_hours) + ":" + (stopwatch_minutes.toString().length == 1? (0+stopwatch_minutes.toString()):stopwatch_minutes) + ":" + (stopwatch_seconds.toString().length == 1? (0+stopwatch_seconds.toString()):stopwatch_seconds);
+        lapContainer.innerHTML = "";
+    });
+
+</script>
+<!-- <script>
+    var wtarget = document.getElementById('water-gauge');
+    var wgauge = new Gauge(wtarget).setOptions(gaugeOpts);
+    wgauge.maxValue = parseInt(localStorage['waterTotal']);
+    wgauge.set(parseInt(localStorage['waterCompleted']));
+
+
+    function waterDrink(){
+        localStorage['waterCompleted'] = parseInt(localStorage['waterCompleted'])+parseInt(localStorage['waterGlass']);
+        var percentage = parseInt(localStorage['waterCompleted']) / parseInt(localStorage['waterTotal']) * 100;
+        $('[mid="water"]').html(Math.floor(percentage)+'%');
+        wgauge.set(parseInt(localStorage['waterCompleted']));
+        calcHealth();
+    }
+    var percentage = parseInt(localStorage['waterCompleted']) / parseInt(localStorage['waterTotal']) * 100;
+    $('[mid="water"]').html(Math.floor(percentage)+'%');
+    function resetWater(){
+        var conf = confirm('Water will be reset, are you sure to continue?');
+        if(conf){
+            localStorage['waterCompleted'] = 0;
+            var percentage = parseInt(localStorage['waterCompleted']) / parseInt(localStorage['waterTotal']) * 100;
+            $('[mid="water"]').html(Math.floor(percentage)+'%');
+            wgauge.set(parseInt(localStorage['waterCompleted']));
+            calcHealth();
+        }
+    }
+    
+
+</Script> -->

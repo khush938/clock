@@ -1,0 +1,194 @@
+<div class="landing-main">
+    <div class="span-title gbold heading" >
+        Calories
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <!-- <div class="meter-health">
+            <canvas id="calorie-gauge" class="healium-gauge" style="z-index: -1;">
+
+            </canvas>
+            <div style="padding-top:150px;">
+                <div class="meter-percentage gbold heading" mid="calorie">
+                    0%
+                </div>
+                <div class="meter-data">
+                    Today's Calories
+                    <br>
+                    <small onclick="resetCalories()">
+                        reset
+                    </small>
+                </div>
+            </div>
+        </div> -->
+        <div class="setTimer" style="display:block;">
+            <input type="number" class="hours" value="00" />
+            <input type="number" class="minutes" value="00" />
+            <input type="number" class="seconds" value="00" />
+        </div>
+        <div class="timer" style="display:none;">
+            00:00:00
+        </div>
+        <button class="Start_timer">Start</button>
+        <button class="Stop_timer">Stop</button>
+        <button class="Reset_timer">Reset</button>
+    </div>
+    <br>
+    <br>
+    <div class="heading gbold" style="font-size: 20px;">
+        I consumed...
+    </div>
+    <br>
+    <div class="head-butt-container">
+        <div class="head-butt" onclick="addCalorie(50)">
+            <div>
+                <i class="fal fa-salad"></i>
+                <br>
+                <small>
+                    SALAD
+                </small>
+            </div>
+        </div>
+        <div class="head-butt" onclick="addCalorie(750)">
+            <div>
+                <i class="fal fa-burger-soda"></i>
+                <br>
+                <small>
+                    FAST FOOD
+                </small>
+            </div>
+        </div>
+        <div class="head-butt" onclick="addCalorie(100)">
+            <div>
+                <i class="fal fa-ice-cream"></i>
+                <br>
+                <small>
+                    DAIRY PRODUCT
+                </small>
+            </div>
+        </div>
+        <div class="head-butt" onclick="addCalorie(550)">
+            <div>
+                <i class="fal fa-soup"></i>
+                <br>
+                <small>
+                    COOKED FOOD
+                </small>
+            </div>
+        </div>
+        <div class="head-butt" onclick="addCalorie(350)">
+            <div>
+                <i class="fal fa-meat"></i>
+                <br>
+                <small>
+                    MEAT
+                </small>
+            </div>
+        </div>
+        <div class="head-butt" onclick="addCalorie(150)">
+            <div>
+                <i class="fal fa-sandwich"></i>
+                <br>
+                <small>
+                    BREAD/WHEAT
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let setTime = document.querySelector(".setTime");
+    let Start_Timer = document.querySelector(".Start_timer");
+    let Stop_Timer = document.querySelector(".Stop_timer");
+    let Reset_Timer = document.querySelector(".Reset_timer");
+    let TimerLoop;
+    let hr, mn, secs;
+    let TimeLeft;
+    Start_Timer.addEventListener("click", ()=>{
+        hr = parseInt(document.querySelector(".hours").value);
+        mn = parseInt(document.querySelector(".minutes").value);
+        secs = parseInt(document.querySelector(".seconds").value);
+        if(hr > 23 && hr < 0){
+            alert("Hours cannot be more than 23 or less than 0");
+        }
+        if(mn > 59 && mn < 0){
+            alert("minutes cannot be more than 59 or less than 0");
+        }
+        if(secs > 59 && secs < 0){
+            alert("Hours cannot be more than 59 or less than 0");
+        }
+
+        document.querySelector(".setTimer").style.display="none";
+        document.querySelector(".timer").style.display="block";
+        document.querySelector(".timer").innerHTML= (hr.toString().length == 1? (0+hr.toString()):hr) + ":" + (mn.toString().length == 1? (0+mn.toString()):mn) + ":" + (secs.toString().length == 1? (0+secs.toString()):secs);
+        TimeLeft = (hr * 3600) + (mn * 60) + secs;
+        TimerLoop = window.setInterval(()=>{
+            TimeLeft--;
+            if(TimeLeft == 0){
+                alert("timer completed");
+                Stop_Timer.click();
+            }
+            secs--;
+
+            if(secs <= 0){
+                if(mn > 0){
+                    mn--;
+                    secs = 59
+                }
+                else{
+                    if(hr>0){
+                        mn = 59;
+                        hr--;
+                        secs = 59
+                    }
+                    else{
+                        Stop_Timer.click();
+                    }
+                }
+            }
+        document.querySelector(".timer").innerHTML= (hr.toString().length == 1? (0+hr.toString()):hr) + ":" + (mn.toString().length == 1? (0+mn.toString()):mn) + ":" + (secs.toString().length == 1? (0+secs.toString()):secs);
+        }, 1000);
+
+    });
+
+    Stop_Timer.addEventListener("click", ()=>{
+        document.querySelector(".setTimer").style.display="block";
+        document.querySelector(".timer").style.display="none";
+        document.querySelector(".timer").innerHTML="00:00:00";
+        window.clearInterval(TimerLoop);
+    });
+
+    Reset_Timer.addEventListener("click", ()=>{
+        document.querySelector(".setTimer").style.display="block";
+        document.querySelector(".timer").style.display="none";
+        document.querySelector(".hours").value="00";
+        document.querySelector(".minutes").value="00";
+        document.querySelector(".seconds").value="00";
+    });
+</script>
+<!-- <script>
+    var ctarget = document.getElementById('calorie-gauge');
+    var cgauge = new Gauge(ctarget).setOptions(gaugeOpts);
+    cgauge.maxValue = parseInt(localStorage['calorieTotal']);
+    cgauge.set(parseInt(localStorage['calorieCompleted']));
+    
+    function addCalorie(x){
+        localStorage['calorieCompleted'] = parseInt(localStorage['calorieCompleted'])+parseInt(x);
+        var percentage = parseInt(localStorage['calorieCompleted']) / parseInt(localStorage['calorieTotal']) * 100;
+        $('[mid="calorie"]').html(Math.floor(percentage)+'%');
+        cgauge.set(parseInt(localStorage['calorieCompleted']));
+        calcHealth();
+    }
+    var percentage = parseInt(localStorage['calorieCompleted']) / parseInt(localStorage['calorieTotal']) * 100;
+    $('[mid="calorie"]').html(Math.floor(percentage)+'%');
+    function resetCalories(){
+        var conf = confirm('Calories will be reset, are you sure to continue?');
+        if(conf){
+            localStorage['calorieCompleted'] = 0;
+            var percentage = parseInt(localStorage['calorieCompleted']) / parseInt(localStorage['calorieTotal']) * 100;
+            $('[mid="calorie"]').html(Math.floor(percentage)+'%');
+            cgauge.set(parseInt(localStorage['calorieCompleted']));
+            calcHealth();
+        }
+    }
+</script> -->

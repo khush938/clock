@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <script src="inc/lib/jquery-3.4.1.js"></script>    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            localStorage['waterTotal'] = 3700;
+            localStorage['waterGlass'] = 250;
+            localStorage['calorieTotal'] = 3700;
+            localStorage['exerTotal'] = 3700;
+            if(typeof localStorage['waterCompleted'] == 'undefined'){
+                localStorage['waterCompleted'] = 0;
+            }
+            if(typeof localStorage['calorieCompleted'] == 'undefined'){
+                localStorage['calorieCompleted'] = 0;
+            }
+            if(typeof localStorage['exerCompleted'] == 'undefined'){
+                localStorage['exerCompleted'] = 0;
+            }
+            $.ajax({
+                url: 'core.html',
+                success: function(data) {
+                    $('head').append(data);
+                    //loadComponent('lay/header.html', 'header');
+                    loadComponent('lay/bottom.html', 'footer');
+                    loadComponent('lay/pages/p0.html', '.page[pid="0"]');
+                    
+                    loadComponent('lay/pages/p1.html', '.page[pid="1"]');
+                    loadComponent('lay/pages/p2.html', '.page[pid="2"]');
+                    loadComponent('lay/pages/p3.html', '.page[pid="3"]');
+                    loadComponent('lay/pages/p4.html', '.page[pid="4"]');
+                    
+                }
+            });
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                if (cordova.platformId == 'android') {
+                    StatusBar.overlaysWebView(true);
+                    StatusBar.backgroundColorByHexString('#33000000');
+                    TransparentNavigationBar.setNavigationBarTransparent();
+                    TransparentNavigationBar.setNavigationBarButtonsColor('light');
+                }
+            }
+        </script>
+    </head>
+    <!--<header class="gbold"></header>-->
+    <body>
+        <div class="pages-wrap"><!--
+            --><div pid="0" class="page">
+
+            </div><!--
+            --><div pid="1" class="page">
+                
+            </div><!--
+            --><div pid="2" class="page">
+                
+            </div><!--
+            --><div pid="3" class="page">
+                
+            </div><!--
+            --><div pid="4" class="page">
+                
+            </div><!--
+        --></div>
+    </body>
+    <footer></footer>
+</html>
+<script>
+    /*$(window).on('load',function(){
+        swipeLock = false;
+        canvasText.on('pointerdown touchdown',function(){
+            swipeLock = true;
+        });
+        canvasText.on('pointerup touchup', function(){
+            swipeLock = false;
+        });
+        canvasText.on('pointerleave touchleave', function(){
+            swipeLock = false;
+        });
+        canvasText.on('pointermove touchmove',function(event){
+            if(swipeLock == true){
+                var relX = event.pageX - canvas.offset().left;
+                var relY = event.pageY - canvas.offset().top;
+                var canvasTextWidth = canvasText.width() + 20;
+                var canvasTextHeight = canvasText.height() + 20;
+                if((relY) - (canvasTextHeight / 2) > 0 && relY < canvas.height() - canvasTextHeight / 2){
+                    canvasText.css('top',((relY) - (canvasTextHeight / 2))) + 'px';
+                    
+                }
+                if((relX) - (canvasTextWidth / 2) > 0 && relX < canvas.width() - canvasTextWidth / 2 ){
+                    canvasText.css('left',((relX) - (canvasTextWidth / 2))) + 'px';
+                }
+            }
+        });
+    });*/
+    currPage = 0;
+    function pageChange(x){
+        $('.pages-wrap').css('left',-(x*100)+'vw');
+        $('.footer-button i').removeClass('fas');
+        $('.footer-button i').addClass('far');
+        $('.footer-button[pid="'+x+'"] i').addClass('fas');
+        /*
+        if(x == 0){
+            var background = 'linear-gradient(45deg, rgb(248,120,109), rgb(204, 175, 81), rgb(101,209,207), rgb(17,156,187),rgb(22,136,167), rgb(8,84,114))';
+        }else if(x == 1){
+            var background = 'linear-gradient(to top right, dodgerblue, rgb(16, 101, 185))';
+        }else if(x == 2){
+            var background = 'linear-gradient(to top right, rgb(233, 210, 10), rgb(151, 141, 0))';
+        }else if(x == 3){
+            var background = 'linear-gradient(to top right, rgb(255, 54, 54), rgb(151, 0, 0))';
+        }else if(x == 4){
+            var background = 'linear-gradient(to top right, rgb(37, 26, 73), rgb(17, 0, 172))';
+        }
+        
+        $('body').css('background',background);
+        */
+    }
+    gaugeOpts = {
+  angle: -0.22, // The span of the gauge arc
+  lineWidth: 0.11, // The line thickness
+  radiusScale: 1, // Relative radius
+  pointer: {
+    length: 0.62, // // Relative to gauge radius
+    strokeWidth: 0, // The thickness
+    color: '#000000' // Fill color
+  },
+  limitMax: false,     // If false, max value increases automatically if value > maxValue
+  limitMin: false,     // If true, the min value of the gauge will be fixed
+  colorStart: '#FFFFFF',   // Colors
+  colorStop: '#FFFFFF',    // just experiment with them
+  strokeColor: '#ffffff75',  // to see which ones work best for you
+  generateGradient: true,
+  highDpiSupport: true,     // High resolution support
+  
+};
+    
+</script>
+<script type="text/javascript" src="cordova.js"></script>
